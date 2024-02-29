@@ -1,0 +1,16 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        neg = False
+        if n <= 0:
+            n = abs(n)
+            neg = True
+        def helper(x,n):
+            if n <= 0:
+                return 1
+            elif n% 2 == 0:
+                return helper(x*x, n/2)
+            else:
+                return x * helper(x, n-1)
+        if not neg:
+            return helper(x,n)
+        return 1/helper(x,n)
